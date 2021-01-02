@@ -40,12 +40,13 @@ public class RoomService {
     public RoomDTO create(RoomDTO roomDTO) throws RoomAlreadyRegisteredException {
         Optional<Room> alreadyRegistered = repository.findByName(roomDTO.getName());
         if (alreadyRegistered.isPresent()) {
-            throw new RoomAlreadyRegisteredException(String.format("Beer with name %s already registered in the system.", roomDTO.getName()));
-        }else {
-            Room room = roomMapper.toModel(roomDTO);
-            Room savedBeer = repository.save(room);
-            return roomMapper.toDTO(savedBeer);
+            throw new RoomAlreadyRegisteredException(String.format("Room with name %s already registered in the system.", roomDTO.getName()));
         }
+        Room room = roomMapper.toModel(roomDTO);
+        System.out.println(room.toString());
+        Room savedBeer = repository.save(room);
+        System.out.println(savedBeer.toString());
+        return roomMapper.toDTO(savedBeer);
     }
 
     public void updateById(Long id, RoomDTO roomDTO) throws RoomNotFoundException{

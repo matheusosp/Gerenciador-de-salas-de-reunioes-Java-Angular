@@ -17,8 +17,8 @@ export class RoomService {
   getRoomList():Observable<any>{
     return this.http.get(`${this.baseUrl}s`)
   }
-  createRoom():Observable<any>{
-    return this.http.get(`${this.baseUrl}`);
+  createRoom(room:Object):Observable<Object>{
+    return this.http.post(`${this.baseUrl}`,room);
   }
   updateRoom(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${id}`, value);

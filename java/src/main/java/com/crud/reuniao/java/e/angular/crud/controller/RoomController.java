@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController @CrossOrigin("http://127.0.0.1:4200")
+@RestController @CrossOrigin("http://localhost:4200")
 @RequestMapping("/api/v1")
 public class RoomController {
 
