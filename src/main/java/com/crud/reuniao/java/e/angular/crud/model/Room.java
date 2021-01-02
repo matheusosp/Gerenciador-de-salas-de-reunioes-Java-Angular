@@ -1,10 +1,8 @@
 package com.crud.reuniao.java.e.angular.crud.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.*;
 
+import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +13,11 @@ import javax.persistence.GenerationType;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Getter
+@Setter
 public class Room {
 
-    @javax.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,15 +34,5 @@ public class Room {
     @Column(nullable = false)
     private String endHour;
 
-    @Override
-    public String toString() {
-        return "Room{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", date='" + date + '\'' +
-                ", startHour='" + startHour + '\'' +
-                ", endHour='" + endHour + '\'' +
-                '}';
-    }
 
 }

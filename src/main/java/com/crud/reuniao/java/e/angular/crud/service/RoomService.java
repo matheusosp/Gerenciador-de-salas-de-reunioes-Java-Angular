@@ -1,58 +1,66 @@
 package com.crud.reuniao.java.e.angular.crud.service;
 
+
 import com.crud.reuniao.java.e.angular.crud.dto.RoomDTO;
+import com.crud.reuniao.java.e.angular.crud.exception.RoomAlreadyRegisteredException;
+import com.crud.reuniao.java.e.angular.crud.model.Room;
 import com.crud.reuniao.java.e.angular.crud.exception.RoomNotFoundException;
 import com.crud.reuniao.java.e.angular.crud.mapper.RoomMapper;
-import com.crud.reuniao.java.e.angular.crud.model.Room;
 import com.crud.reuniao.java.e.angular.crud.repository.RoomRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RoomService {
 
-    RoomRepository repository;
+    private final RoomRepository repository;
 
     private final RoomMapper roomMapper = RoomMapper.INSTANCE;
 
-    public List<Room> findAll(){
-        return repository.findAll();
+    public RoomService(RoomRepository repository) {
+        this.repository = repository;
     }
 
-    public Room findById(Long id) throws RoomNotFoundException {
-        return repository.findById(id).orElseThrow(() -> new RoomNotFoundException(id));
+    public List<RoomDTO> findAll(){
+        List<Room> room = repository.findAll();
+        return room.stream()
+                .map(roomMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
-    public Room create(RoomDTO roomDTO) {
-        Room room = roomMapper.toModel(roomDTO);
-        Room savedRoom = repository.save(room);
-
-        return savedRoom;
+    public RoomDTO findById(Long id) throws RoomNotFoundException {
+        Room room = verifyIfExists(id);
+        return roomMapper.toDTO(room);
     }
 
-    public Room updateById(Long id, RoomDTO roomDTO) throws RoomNotFoundException{
+    public void create(RoomDTO roomDTO) throws RoomAlreadyRegisteredException {
+        Optional<Room> alreadyRegistered = repository.findByName(roomDTO.getName());
+        if (alreadyRegistered.isPresent()) {
+            throw new RoomAlreadyRegisteredException(roomDTO.getName());
+        }else {
+            Room room = roomMapper.toModel(roomDTO);
+            repository.save(room);
+        }
+    }
+
+    public void updateById(Long id, RoomDTO roomDTO) throws RoomNotFoundException{
         verifyIfExists(id);
-
         Room updatedRoom = roomMapper.toModel(roomDTO);
-        Room savedRoom = repository.save(updatedRoom);
-
-        return savedRoom;
+        updatedRoom.setId(id);
+        repository.save(updatedRoom);
     }
 
     public void deleteById(Long id) throws RoomNotFoundException {
         verifyIfExists(id);
-
         repository.deleteById(id);
 
     }
     private Room verifyIfExists(Long id) throws RoomNotFoundException {
-        return repository.findById(id)
-                .orElseThrow(() -> new RoomNotFoundException(id));
+        return repository.findById(id).orElseThrow(() -> new RoomNotFoundException(id));
     }
-
 
 }

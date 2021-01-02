@@ -1,23 +1,19 @@
 package com.crud.reuniao.java.e.angular.crud.dto;
 
-import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class RoomDTO {
 
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 200)
     private String name;
 
     @NotNull
