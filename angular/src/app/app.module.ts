@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateRoomComponent } from './create-room/create-room.component';
+import { RoomDetailsComponent } from './room-details/room-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomListComponent,
     CreateRoomComponent,
+    RoomDetailsComponent,
   ],
   imports: [
     BrowserModule,

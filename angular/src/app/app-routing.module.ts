@@ -1,3 +1,4 @@
+import { RoomDetailsComponent } from './room-details/room-details.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateRoomComponent } from './create-room/create-room.component';
@@ -7,7 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'rooms', pathMatch: 'full' },
   { path: 'rooms', component: RoomListComponent },
   { path: 'add', component: CreateRoomComponent },
-
+  { path: 'details/:id', component: RoomDetailsComponent },
 ];
 
 @NgModule({
