@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateRoomComponent } from './create-room/create-room.component';
 import { RoomDetailsComponent } from './room-details/room-details.component';
+import { UpdateRoomComponent } from './update-room/update-room.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RoomDetailsComponent } from './room-details/room-details.component';
     RoomListComponent,
     CreateRoomComponent,
     RoomDetailsComponent,
+    UpdateRoomComponent,
   ],
   imports: [
     BrowserModule,

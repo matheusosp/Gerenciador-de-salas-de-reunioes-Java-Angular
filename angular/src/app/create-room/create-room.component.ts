@@ -27,7 +27,7 @@ export class CreateRoomComponent implements OnInit {
   save() {
     this.roomService.createRoom(this.room)
       .subscribe(
-        data => console.log(data),
+         () => this.gotoList(),
          error => console.log(error)
       );
     this.room = new Room();

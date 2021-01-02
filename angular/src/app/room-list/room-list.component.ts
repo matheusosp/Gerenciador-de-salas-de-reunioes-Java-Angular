@@ -25,7 +25,7 @@ export class RoomListComponent implements OnInit {
   deleteRoom(id: number) {
     this.roomService.deleteRoom(id)
       .subscribe(
-        data => {
+        () => {
           this.reloadData();
         },
         error => console.log(error));
