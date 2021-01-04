@@ -11,15 +11,23 @@ import { RoomService } from '../room-service.service';
 })
 export class RoomListComponent implements OnInit {
 
-  rooms!: Observable<Room[]>;
+  rooms!: Room[];
+  loader: boolean = false;
 
   constructor(private roomService: RoomService, private router: Router) { }
 
   ngOnInit(): void {
     this.reloadData();
+    console.log(this.loader);
   }
   reloadData() {
-    this.rooms = this.roomService.getRoomList();
+    this.roomService.getRoomList().subscribe(
+      (data) => {
+        this.rooms = data;
+        this.loader = true;
+        console.log(this.loader);
+      }
+    );
   }
 
   deleteRoom(id: number) {

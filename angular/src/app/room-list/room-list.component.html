@@ -1,4 +1,7 @@
-<div class="panel panel-primary">
+<div style="display:flex;justify-content:center;align-items: center">
+<mat-spinner diameter=150  mode="indeterminate" *ngIf="!loader"></mat-spinner>
+</div>
+<div *ngIf="loader"  class="panel panel-primary">
     <div class="panel-heading">
       <h2>Room List</h2>
     </div>
@@ -14,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let room of rooms | async">
+          <tr *ngFor="let room of rooms">
             <td>{{room.name}}</td>
             <td>{{room.date}}</td>
             <td>{{room.startHour}}</td>

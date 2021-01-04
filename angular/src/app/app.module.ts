@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateRoomComponent } from './create-room/create-room.component';
 import { RoomDetailsComponent } from './room-details/room-details.component';
 import { UpdateRoomComponent } from './update-room/update-room.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { UpdateRoomComponent } from './update-room/update-room.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
