@@ -20,7 +20,10 @@ ng serve -o
  * H2 Database
  * Java 8
  * Maven
- * 
+ * Angular
+ * TypeScript
+ * Angular MAterial
+ * MatProgressSpinner
  
 ## Endpoints criados na API
 
