@@ -25,28 +25,25 @@ public class RoomService {
         this.repository = repository;
     }
 
-    public List<RoomDTO> findAll(){
+    public List<Room> findAll(){
         List<Room> room = repository.findAll();
-        return room.stream()
-                .map(roomMapper::toDTO)
-                .collect(Collectors.toList());
+        return room;
     }
 
-    public RoomDTO findById(Long id) throws RoomNotFoundException {
+    public Room findById(Long id) throws RoomNotFoundException {
         Room room = verifyIfExists(id);
-        return roomMapper.toDTO(room);
+        return room;
     }
 
-    public RoomDTO create(RoomDTO roomDTO) throws RoomAlreadyRegisteredException {
-        Optional<Room> alreadyRegistered = repository.findByName(roomDTO.getName());
+    public Room create(Room room) throws RoomAlreadyRegisteredException {
+        Optional<Room> alreadyRegistered = repository.findByName(room.getName());
         if (alreadyRegistered.isPresent()) {
-            throw new RoomAlreadyRegisteredException(String.format("Room with name %s already registered in the system.", roomDTO.getName()));
+            throw new RoomAlreadyRegisteredException(String.format("Room with name %s already registered in the system.", room.getName()));
         }
-        Room room = roomMapper.toModel(roomDTO);
-        System.out.println(room.toString());
-        Room savedBeer = repository.save(room);
-        System.out.println(savedBeer.toString());
-        return roomMapper.toDTO(savedBeer);
+        System.out.println("test1"+room.toString());
+        Room savedRoom = repository.save(room);
+        System.out.println(savedRoom.toString());
+        return savedRoom;
     }
 
     public void updateById(Long id, RoomDTO roomDTO) throws RoomNotFoundException{

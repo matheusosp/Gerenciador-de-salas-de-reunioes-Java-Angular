@@ -3,6 +3,7 @@ package com.crud.reuniao.java.e.angular.crud.controller;
 import com.crud.reuniao.java.e.angular.crud.dto.RoomDTO;
 import com.crud.reuniao.java.e.angular.crud.exception.RoomAlreadyRegisteredException;
 import com.crud.reuniao.java.e.angular.crud.exception.RoomNotFoundException;
+import com.crud.reuniao.java.e.angular.crud.model.Room;
 import com.crud.reuniao.java.e.angular.crud.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,19 +21,19 @@ public class RoomController {
 
     @GetMapping("/rooms")
     @ResponseStatus(HttpStatus.OK)
-    public List<RoomDTO> listAll(){
+    public List<Room> listAll(){
         return service.findAll();
     }
 
     @GetMapping("/room/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public RoomDTO findById(@PathVariable("id") Long id) throws RoomNotFoundException {
+    public Room findById(@PathVariable("id") Long id) throws RoomNotFoundException {
         return service.findById(id);
     }
 
     @PostMapping("/room")
     @ResponseStatus(HttpStatus.CREATED)
-    public RoomDTO createRoom(@RequestBody @Valid RoomDTO room) throws RoomAlreadyRegisteredException {
+    public Room createRoom(@RequestBody @Valid Room room) throws RoomAlreadyRegisteredException {
         return service.create(room);
     }
 
