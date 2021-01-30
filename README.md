@@ -1,6 +1,6 @@
 # Gerenciador de salas de reunioes
 
-![Foo](https://raw.githubusercontent.com/matheusosp/blog_Django-React/main/Lista%20de%20tarefas%20-%20Google%20Chrome.jpg)
+![Foo](https://raw.githubusercontent.com/matheusosp/Gerenciador-de-salas-de-reunioes-Java-Angular/main/Client%20Room%20CRUD%20-%20Google%20Chrome.jpg)
 
 ## TO RUN LOCALLY
 ```
